@@ -25,14 +25,12 @@ export class Level {
 
         drawRect(this.ctx,0,0,window.innerWidth,window.innerHeight,{fillStyle:'white'});
         if (Pointer.isDragging) {
-            if (Pointer.buttons[0]) drawLine(this.ctx,Pointer.buttons[0].x,Pointer.buttons[0].y,Pointer.pos.x,Pointer.pos.y,{strokeStyle:'#bbb',lineWidth:2});
-            if (Pointer.buttons[1]) drawLine(this.ctx,Pointer.buttons[1].x,Pointer.buttons[1].y,Pointer.pos.x,Pointer.pos.y,{strokeStyle:'#999',lineWidth:2});
-            if (Pointer.buttons[2]) drawLine(this.ctx,Pointer.buttons[2].x,Pointer.buttons[2].y,Pointer.pos.x,Pointer.pos.y,{strokeStyle:'#666',lineWidth:2});
+            Pointer.buttons.forEach((b) => {
+                if (b) drawLine(this.ctx,b.x,b.y,Pointer.pos.x,Pointer.pos.y,{strokeStyle:'#bbb',lineWidth:2});
+            });
         }
         drawCircle(this.ctx,Pointer.pos.x,Pointer.pos.y,10,0,Math.PI*2,{fillStyle:'red'});
 
-        
-        Dbgr.quick = {w:window.innerWidth, h:window.innerHeight};
         Dbgr.draw();
     }
 

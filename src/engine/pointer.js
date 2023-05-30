@@ -78,7 +78,10 @@ export class Pointer {
         this.pos = {x:e.pageX, y:e.pageY};
         if (this.hasDragged) {
             if (!this.isDragging) {
+                this.triggerListeners('dragstart',e);
                 this.isDragging = true;
+            } else {
+                this.triggerListeners('drag',e);
             }
         }
     }
@@ -90,6 +93,7 @@ export class Pointer {
         e.preventDefault();
         this.buttons[e.button] = false;
         if(!this.hasDragged) {
+            this.triggerListeners('dragend',e);
             this.isDragging = false;
         }
     }
@@ -104,7 +108,10 @@ export class Pointer {
         this.pos = new Vector(tts[0].pageX,tts[0].pageY);
         if (this.hasDragged) {
             if (!this.isDragging) {
+                this.triggerListeners('dragstart',e);
                 this.isDragging = true;
+            } else {
+                this.triggerListeners('drag',e);
             }
         }
     }
@@ -116,6 +123,7 @@ export class Pointer {
     static touchend = (e) => {
         this.touches = this.touches.filter((t) => ![...e.changedTouches].some(ct => ct.identifier === t.id));
         if(!this.hasDragged) {
+            this.triggerListeners('dragend',e);
             this.isDragging = false;
         }
     }

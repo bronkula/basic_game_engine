@@ -53,7 +53,9 @@ export class Dbgr {
         let div = document.querySelector('.debugger .list');
         div.innerHTML = this._items.reduce((r,o) => r+o.toString, '');
 
-        div = document.querySelector('.debugger .quick');
-        div.innerHTML = bugString("quick", this.quick);
+        if(this.quick) {
+            div = document.querySelector('.debugger .quick');
+            div.innerHTML = bugString("quick", this.quick);
+        }
     }
 }
