@@ -16,6 +16,20 @@ export class Pointer {
     static #y = 0;
     static #keycodes = {};
     static #scrolling = false;
+    static #listeners = {
+        mousedown:[],
+        mouseup:[],
+        mousemove:[],
+        touchstart:[],
+        touchend:[],
+        touchmove:[],
+        keydown:[],
+        keyup:[],
+        wheel:[],
+        dragstart:[],
+        dragend:[],
+        drag:[],
+    }
 
     static isDragging = false;
     static buttons = [false,false,false,false,false];
@@ -38,6 +52,18 @@ export class Pointer {
         window.addEventListener('wheel',this.wheel);
 
         window.addEventListener('contextmenu',e=>{e.preventDefault();return false;});
+    }
+
+    static addListener(callee,type,fn) {
+        let listener = this.#listeners[type].find((l)=>l.c===callee);
+        if (listener) listener.fn = fn;
+        else this.#listeners[type].push({c:callee,fn});
+    }
+    static removeListener(callee,type) {
+        this.#listeners[type] = this.#listeners[type].filter((l)=>l.c!==callee);
+    }
+    static triggerListeners(type,e) {
+        this.#listeners[type].forEach(l=>l.fn(e));
     }
 
     static keydown = (e) => {
