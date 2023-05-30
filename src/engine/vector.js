@@ -17,6 +17,7 @@ export class Vector {
     get z() { return this.parts[2]; }
 
     get xy() { return {x:this.x, y:this.y}; }
+    get xyz() { return {x:this.x, y:this.y, z:this.z}; }
 
     set x(v) { this.parts[0] = v; }
     set y(v) { this.parts[1] = v; }

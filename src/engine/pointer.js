@@ -15,21 +15,27 @@ export class Pointer {
     static #x = 0;
     static #y = 0;
     static #keycodes = {};
+    static #scrolling = false;
 
     static isDragging = false;
-    static buttons = [false,false,false];
+    static buttons = [false,false,false,false,false];
     static touches = [];
+    static delta = new Vector(0,0,0);
 
 
     static init() {
         window.addEventListener('keydown',this.keydown);
         window.addEventListener('keyup',this.keyup);
+
         window.addEventListener('mousemove',this.mousemove);
         window.addEventListener('mousedown',this.mousedown);
         window.addEventListener('mouseup',this.mouseup);
+
         window.addEventListener('touchmove',this.touchmove);
         window.addEventListener('touchstart',this.touchstart);
         window.addEventListener('touchend',this.touchend);
+
+        window.addEventListener('wheel',this.wheel);
 
         window.addEventListener('contextmenu',e=>{e.preventDefault();return false;});
     }
@@ -86,6 +92,15 @@ export class Pointer {
         if(!this.hasDragged) {
             this.isDragging = false;
         }
+    }
+
+    static wheel = (e) => {
+        clearTimeout(this.#scrolling);
+        this.#scrolling = setTimeout(() => {
+            this.#scrolling = false;
+            this.delta = new Vector(0,0,0);
+        }, 200);
+        this.delta = new Vector(e.deltaX,e.deltaY,e.deltaZ);
     }
 
     static set pos({x,y}) { this.#x = x; this.#y = y; }

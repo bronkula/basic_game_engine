@@ -12,6 +12,7 @@ export class Level {
         new Bug('buttons', () => Pointer.buttons);
         new Bug('touches', () => Pointer.touches);
         new Bug('keys', () => Pointer.keycodes);
+        new Bug('wheel', () => Pointer.delta.xyz);
     }
     setup = async () => {
         this.canvas = document.querySelector('canvas');
