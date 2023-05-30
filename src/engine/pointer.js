@@ -55,7 +55,7 @@ export class Pointer {
     static get y() { return this.#y; }
 
     static get hasDragged() {
-        return this.buttons.some(b => b && b.x!=this.pos.x && b.y!=this.pos.y) ||
-            this.touches.some(t => t && t.x!=this.pos.x && t.y!=this.pos.y);
+        return this.buttons.some(b => b && b.x!==this.pos.x && b.y!==this.pos.y) ||
+            this.touches.some(t => t && t.x!==this.pos.x && t.y!==this.pos.y);
     }
 }
