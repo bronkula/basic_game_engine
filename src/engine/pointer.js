@@ -55,7 +55,7 @@ export class Pointer {
     }
 
     static addListener(callee,type,fn) {
-        let listener = this.#listeners[type].find((l)=>l.c===callee);
+        let listener = this.#listeners[type].find(({c})=>c===callee);
         if (listener) listener.fn = fn;
         else this.#listeners[type].push({c:callee,fn});
     }
