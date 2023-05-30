@@ -24,6 +24,9 @@ export class Pointer {
         window.addEventListener('mousemove',this.mousemove);
         window.addEventListener('mousedown',this.mousedown);
         window.addEventListener('mouseup',this.mouseup);
+        window.addEventListener('touchmove',this.touchmove);
+        window.addEventListener('touchstart',this.touchstart);
+        window.addEventListener('touchend',this.touchend);
 
         window.addEventListener('contextmenu',e=>{e.preventDefault();return false;});
     }
@@ -44,6 +47,32 @@ export class Pointer {
     static mouseup = (e) => {
         e.preventDefault();
         this.buttons[e.button] = false;
+        if(!this.hasDragged) {
+            this.isDragging = false;
+        }
+    }
+
+    static touchmove = (e) => {
+        let tts = [...e.targetTouches];
+        tts.forEach(t => {
+            let tt = this.touches.find(tt => tt.id === t.identifier);
+            tt.x = t.pageX;
+            tt.y = t.pageY;
+        });
+        this.pos = new Vector(tts[0].pageX,tts[0].pageY);
+        if (this.hasDragged) {
+            if (!this.isDragging) {
+                this.isDragging = true;
+            }
+        }
+    }
+    static touchstart = (e) => {
+        let touch = e.changedTouches[0];
+        this.touches.push(new Point(touch));
+        this.pos = new Vector(touch.pageX,touch.pageY);
+    }
+    static touchend = (e) => {
+        this.touches = this.touches.filter((t) => ![...e.changedTouches].some(ct => ct.identifier === t.id));
         if(!this.hasDragged) {
             this.isDragging = false;
         }
