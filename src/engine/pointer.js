@@ -15,7 +15,6 @@ export class Pointer {
     static #x = 0;
     static #y = 0;
 
-    static hasDragged = false;
     static isDragging = false;
     static buttons = [false,false,false];
     static touches = [];

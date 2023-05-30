@@ -8,6 +8,7 @@ export class Level {
 
         new Bug('pointer pos', () => Pointer.pos.xy);
         new Bug('pointer isDragging', () => Pointer.isDragging);
+        new Bug('pointer hasDragged', () => Pointer.hasDragged);
         new Bug('buttons', () => Pointer.buttons);
     }
     setup = async () => {
