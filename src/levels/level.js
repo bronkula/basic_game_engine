@@ -11,6 +11,7 @@ export class Level {
         new Bug('pointer hasDragged', () => Pointer.hasDragged);
         new Bug('buttons', () => Pointer.buttons);
         new Bug('touches', () => Pointer.touches);
+        new Bug('keys', () => Pointer.keycodes);
     }
     setup = async () => {
         this.canvas = document.querySelector('canvas');

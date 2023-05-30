@@ -14,6 +14,7 @@ export class Point {
 export class Pointer {
     static #x = 0;
     static #y = 0;
+    static #keycodes = {};
 
     static isDragging = false;
     static buttons = [false,false,false];
@@ -21,6 +22,8 @@ export class Pointer {
 
 
     static init() {
+        window.addEventListener('keydown',this.keydown);
+        window.addEventListener('keyup',this.keyup);
         window.addEventListener('mousemove',this.mousemove);
         window.addEventListener('mousedown',this.mousedown);
         window.addEventListener('mouseup',this.mouseup);
@@ -29,6 +32,13 @@ export class Pointer {
         window.addEventListener('touchend',this.touchend);
 
         window.addEventListener('contextmenu',e=>{e.preventDefault();return false;});
+    }
+
+    static keydown = (e) => {
+        this.keycodes[e.code] = true;
+    }
+    static keyup = (e) => {
+        delete this.keycodes[e.code];
     }
 
     static mousemove = (e) => {
@@ -83,6 +93,8 @@ export class Pointer {
     
     static get x() { return this.#x; }
     static get y() { return this.#y; }
+
+    static get keycodes() { return this.#keycodes; }
 
     static get hasDragged() {
         return this.buttons.some(b => b && b.x!==this.pos.x && b.y!==this.pos.y) ||
