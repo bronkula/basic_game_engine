@@ -24,6 +24,8 @@ export class Pointer {
         window.addEventListener('mousemove',this.mousemove);
         window.addEventListener('mousedown',this.mousedown);
         window.addEventListener('mouseup',this.mouseup);
+
+        window.addEventListener('contextmenu',e=>{e.preventDefault();return false;});
     }
 
     static mousemove = (e) => {

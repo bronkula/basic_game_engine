@@ -15,3 +15,12 @@ export const drawRect = (ctx,x,y,w,h,options) => {
     ctx.closePath();
     ctx.fill();
 }
+
+export const drawLine = (ctx,x1,y1,x2,y2,options) => {
+    Object.assign(ctx,options);
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.closePath();
+    ctx.stroke();
+}
