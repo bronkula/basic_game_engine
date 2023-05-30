@@ -1,5 +1,5 @@
-import { drawCircle, drawRect } from "./canvas.js";
-import { Pointer } from "./pointer.js";
+import { drawCircle, drawRect } from "../engine/canvas.js";
+import { Pointer } from "../engine/pointer.js";
 
 export class Level {
     constructor() {
