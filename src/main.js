@@ -1,6 +1,6 @@
-import { Level } from "./level.js";
-import { Pointer } from "./pointer.js";
-import { Settings } from "./settings.js";
+import { Level } from "./levels/level.js";
+import { Pointer } from "./engine/pointer.js";
+import { Settings } from "./engine/settings.js";
 
 class Game {
     constructor() {

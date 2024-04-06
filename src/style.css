@@ -1,0 +1,33 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.debugger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    background-color: rgb( 255 255 255 / 50%);
+    border: 1px solid white;
+    border-radius: 5px;
+    z-index: 20;
+    font-size: 0.6em;
+    max-width: 100%;
+    pointer-events: none;
+}
+
+.bug-prop { display: inline-block; }
+.bug-k { color: darkgreen; font-weight: bold;}
+.bug-v { color: darkblue; }
+.bug-o { color: gray; }
