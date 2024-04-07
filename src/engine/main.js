@@ -1,4 +1,4 @@
-import { Level } from "./level.js";
+import { Level } from "../levels/level.js";
 import { Pointer } from "./pointer.js";
 import { Settings } from "./settings.js";
 
