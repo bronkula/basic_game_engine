@@ -53,16 +53,6 @@ export class Vector {
         )
     }
 
-    gapx({parts}) {
-        return parts[0] - this.parts[0];
-    }
-    gapy({parts}) {
-        return parts[1] - this.parts[1];
-    }
-    gapz({parts}) {
-        return parts[2] - this.parts[2];
-    }
-
     get copy() {
         return new this.constructor(this.parts);
     }
