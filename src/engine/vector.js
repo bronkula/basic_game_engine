@@ -1,4 +1,6 @@
 export class Vector {
+    parts = [];
+
     constructor(...parts) {
         this.parts =
             parts.length === 0 ? [0,0] :
@@ -64,6 +66,9 @@ export class Vector {
     set x(value) { this.parts[0] = value; }
     set y(value) { this.parts[1] = value; }
     set z(value) { this.parts[2] = value; }
+
+    get xy() { return {x:this.x,y:this.y}; }
+    get xyz() { return {x:this.x,y:this.y,z:this.z}; }
 }
 
 export class Vec2 extends Vector {}
